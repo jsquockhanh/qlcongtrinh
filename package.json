@@ -1,16 +1,14 @@
 {
-  "name": "quan-ly-chi-phi-cong-trinh-web-auth",
+  "name": "quan-ly-chi-phi-cong-trinh-firebase",
   "version": "2.2.0",
   "private": true,
   "dependencies": {
+    "firebase": "^11.1.0",
     "lucide-react": "^0.468.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
-    "xlsx": "^0.18.5",
-    "firebase-admin": "^13.0.2",
-    "bcryptjs": "^2.4.3",
-    "jsonwebtoken": "^9.0.2"
+    "xlsx": "^0.18.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -19,15 +17,7 @@
     "eject": "react-scripts eject"
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "production": [">0.2%", "not dead", "not op_mini all"],
+    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
   }
 }

@@ -1,7 +1,23 @@
 rules_version = '2';
 service cloud.firestore {
- match /databases/{database}/documents {
-  // Tất cả truy cập dữ liệu đi qua API Vercel đã xác thực bằng JWT và Firebase Admin SDK.
-  match /{document=**} { allow read, write: if false; }
- }
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function ownsResource() { return signedIn() && resource.data.ownerId == request.auth.uid; }
+    function createsForSelf() { return signedIn() && request.resource.data.ownerId == request.auth.uid; }
+    match /projects/{id} {
+      allow read, delete: if ownsResource();
+      allow create: if createsForSelf();
+      allow update: if ownsResource() && request.resource.data.ownerId == request.auth.uid;
+    }
+    match /parties/{id} {
+      allow read, delete: if ownsResource();
+      allow create: if createsForSelf();
+      allow update: if ownsResource() && request.resource.data.ownerId == request.auth.uid;
+    }
+    match /expenses/{id} {
+      allow read, delete: if ownsResource();
+      allow create: if createsForSelf();
+      allow update: if ownsResource() && request.resource.data.ownerId == request.auth.uid;
+    }
+  }
 }
