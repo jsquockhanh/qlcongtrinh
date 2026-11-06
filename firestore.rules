@@ -1,0 +1,7 @@
+rules_version = '2';
+service cloud.firestore {
+ match /databases/{database}/documents {
+  // Tất cả truy cập dữ liệu đi qua API Vercel đã xác thực bằng JWT và Firebase Admin SDK.
+  match /{document=**} { allow read, write: if false; }
+ }
+}
